@@ -1,0 +1,20 @@
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+
+        newcopy = {None : None}
+        #adding copy of the elements to hashmap/dictionary
+
+        cur=head
+        while cur:
+            copy = Node(cur.val)
+            newcopy[cur] = copy
+            cur = cur.next
+
+        cur = head
+        while cur:
+            copy = newcopy[cur]
+            copy.next= newcopy[cur.next]
+            copy.random = newcopy[cur.random]
+            cur=cur.next
+
+        return newcopy[head]
